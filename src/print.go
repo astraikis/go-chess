@@ -3,14 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
-	"strconv"
 )
-
-func getPos(i int, j int) string {
-	rank := i + 1
-	file := offsetToFile[j]
-	return file + strconv.Itoa(rank)
-}
 
 // Prints board based on global board
 // variable.
@@ -35,7 +28,11 @@ func printBoard(moves map[string]struct{}, movesPos string) {
 				if movesPos == pos {
 					fmt.Printf("|*%s*", string(piece))
 				} else {
-					fmt.Printf("| %s ", string(piece))
+					if highlighted {
+						fmt.Printf("|/%s/", string(piece))
+					} else {
+						fmt.Printf("| %s ", string(piece))
+					}
 				}
 			}
 		}

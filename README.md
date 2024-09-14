@@ -13,3 +13,11 @@ Not really sure why I'm using Go. If I wanted to learn new language for this pro
 For now, I'm just working on the board representation. I'm hoping this won't take too long, but I'm almost definitely underestimating it. I've started on setting up the rules for identifying valid moves, but haven't gotten very far.
 
 One of the next things I'm gonna look into is [Perft](https://www.chessprogramming.org/Perft).
+
+### Sept 13, 2024
+
+Been getting a little busy with schoolwork, but hoping to really get back into this project again.
+
+Working on getting all legal moves for each piece type. Feel like things are still a little sloppy, so I wanna clean things up soon.
+
+[Screenshot of terminal showing all moves for a bishop at e4.](./screenshots/1.jpg)
