@@ -20,4 +20,4 @@ Been getting a little busy with schoolwork, but hoping to really get back into t
 
 Working on getting all legal moves for each piece type. Feel like things are still a little sloppy, so I wanna clean things up soon.
 
-[Screenshot of terminal showing all moves for a bishop at e4.](./screenshots/1.jpg)
+![Screenshot of terminal showing all moves for a bishop at e4.](./screenshots/1.jpg)
