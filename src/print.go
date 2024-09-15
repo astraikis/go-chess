@@ -11,8 +11,15 @@ import (
 // highlight.
 func printBoard(moves map[string]struct{}, movesPos string) {
 	for i := 0; i < 8; i++ {
-		fmt.Println("    +---+---+---+---+---+---+---+---+")
-		fmt.Printf("%d   ", i+1)
+		fmt.Print("    +---+---+---+---+---+---+---+---+")
+		if i == 0 {
+			fmt.Print("    FEN:")
+		} else if i == 2 && blackScore > 0 {
+			fmt.Print("    Black:")
+		} else if i == 4 && whiteScore > 0 {
+			fmt.Print("    White:")
+		}
+		fmt.Printf("\n%d   ", i+1)
 
 		for j := 0; j < 8; j++ {
 			var piece = board[(i*8)+j]
@@ -37,7 +44,27 @@ func printBoard(moves map[string]struct{}, movesPos string) {
 			}
 		}
 
-		fmt.Println("|")
+		fmt.Print("|")
+		if i == 0 {
+			fmt.Print("    " + currFen)
+		} else if i == 2 && blackScore > 0 {
+			fmt.Print("    ")
+			for piece, count := range capturedPiecesWhite {
+				for i := 0; i < count; i++ {
+					fmt.Print(piece)
+				}
+			}
+			fmt.Printf(" (%d)", blackScore)
+		} else if i == 4 && whiteScore > 0 {
+			fmt.Print("    ")
+			for piece, count := range capturedPiecesBlack {
+				for i := 0; i < count; i++ {
+					fmt.Print(piece)
+				}
+			}
+			fmt.Printf(" (%d)", whiteScore)
+		}
+		fmt.Println("")
 	}
 
 	fmt.Println("    +---+---+---+---+---+---+---+---+")

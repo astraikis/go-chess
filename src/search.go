@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 )
 
@@ -9,7 +8,6 @@ func canAttack(piece string, srcX int, srcY int, targetX int, targetY int) bool 
 	// White pawn
 	if piece == "P" {
 		if (targetX == srcX+1 || targetX == srcX-1) && targetY == srcY-1 {
-			fmt.Println(getPieceColor(string(getPieceByPos(targetY, targetX))))
 			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
 				return true
 			}
@@ -392,10 +390,81 @@ func getLegalMoves(pos string) map[string]struct{} {
 
 		if targetY != 0 && targetX != 8 {
 			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "blank" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			} else if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			}
+		}
+
+		// Right
+		targetY = rankInt
+		targetX = fileOffset + 1
+
+		if targetX != 8 {
+			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "blank" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			} else if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			}
+		}
+
+		// Down right
+		targetY = rankInt + 1
+		targetX = fileOffset + 1
+
+		if targetY != 8 && targetX != 8 {
+			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "blank" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			} else if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			}
+		}
+
+		// Down
+		targetY = rankInt + 1
+		targetX = fileOffset
+
+		if targetY != 8 {
+			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "blank" {
 				moves[file+strconv.Itoa(targetY)] = struct{}{}
-				targetY--
 			} else if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
 				moves[file+strconv.Itoa(targetY)] = struct{}{}
+			}
+		}
+
+		// Down left
+		targetY = rankInt + 1
+		targetX = fileOffset - 1
+
+		if targetY != 8 && targetX > 0 {
+			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "blank" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			} else if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			}
+		}
+
+		// Right
+		targetY = rankInt
+		targetX = fileOffset - 1
+
+		if targetX > 0 {
+			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "blank" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			} else if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			}
+		}
+
+		// Up left
+		targetY = rankInt - 1
+		targetX = fileOffset - 1
+
+		if targetY != 0 && targetX > 0 {
+			if getPieceColor(string(getPieceByPos(targetY, targetX))) == "blank" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
+			} else if getPieceColor(string(getPieceByPos(targetY, targetX))) == "black" {
+				moves[offsetToFile[targetX]+strconv.Itoa(targetY)] = struct{}{}
 			}
 		}
 	}

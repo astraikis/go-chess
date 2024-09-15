@@ -24,6 +24,7 @@ func main() {
 	// Check for FEN in command
 
 	setBoard(StartingFen)
+	currFen = StartingFen
 
 	scanner := bufio.NewScanner(os.Stdin)
 
@@ -36,27 +37,33 @@ func main() {
 		isWhite = false
 	}
 
-	printBoard(nil, "")
-
 	var move string
 	for {
 		if gameOver {
 			break
 		}
 
+		currFen = getFenFromBoard()
+		setCapturedPieces()
+		setPieceScores()
+		printBoard(nil, "")
+
 		if whitesTurn {
-			fmt.Print("\nWhites move: ")
-			scanner.Scan()
-			move = scanner.Text()
-			fmt.Println("")
+			for whitesTurn {
+				fmt.Print("\nWhites move: ")
+				scanner.Scan()
+				move = scanner.Text()
+				fmt.Println("")
 
-			// Parse move
-			moveSplit := strings.Fields(move)
-			if len(moveSplit) == 1 {
-				printLegalMoves(moveSplit[0])
-				whitesTurn = !whitesTurn
+				// Parse move
+				moveSplit := strings.Fields(move)
+				if len(moveSplit) == 1 {
+					printLegalMoves(moveSplit[0])
+				} else if len(moveSplit) == 3 {
+					movePiece(moveSplit[0], moveSplit[2])
+					whitesTurn = !whitesTurn
+				}
 			}
-
 		} else {
 			fmt.Print("\nBlacks move: ")
 			scanner.Scan()

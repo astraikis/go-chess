@@ -21,3 +21,9 @@ Been getting a little busy with schoolwork, but hoping to really get back into t
 Working on getting all legal moves for each piece type. Feel like things are still a little sloppy, so I wanna clean things up soon.
 
 ![Screenshot of terminal showing all moves for a bishop at e4.](./screenshots/1.jpg)
+
+### Sep 15, 2024
+
+Worked on getting FEN from the board array. Also added captured pieces and piece score when printing board. Got a little distracted from working on generating legal moves.
+
+![Screenshot of terminal showing all moves for a bishop at e4.](./screenshots/2.jpg)
